@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Healthy Mine – Daily Boost</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ===== Design plan =====
+   A nature-inspired, feel-good wellness brand: warm cream paper, deep forest
+   green for trust and structure, soft mustard-gold for calls to action.
+   Fraunces (warm display serif) carries headings, Inter carries body copy.
+   One committed light theme — colors are set explicitly, not theme-switched. */
+:root{
+  --cream:#F7F1E3;
+  --cream2:#EFE7D2;
+  --paper:#FFFFFF;
+  --ink:#1E2B20;
+  --ink-soft:#5B6B58;
+  --line:#E4DAC0;
+  --green:#1F3D2C;
+  --green2:#2A4F38;
+  --green-deep:#152A1D;
+  --sage:#7E9774;
+  --sage-bg:#E6EDDD;
+  --gold:#C9A24A;
+  --gold-dim:#AD8838;
+  --cream-on-dark:#F3EEDD;
+  --mute-on-dark:#AFC3A9;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--cream);color:var(--ink);font:400 16px/1.68 'Inter',system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;font-optical-sizing:auto;letter-spacing:-.01em;line-height:1.08;text-wrap:balance;margin:0;color:var(--ink)}
+h1{font-size:clamp(2.5rem,6vw,4.3rem);font-weight:600}
+h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin-bottom:.5rem}
+h3{font-size:1.3rem}
+p{max-width:62ch;color:var(--ink-soft)}
+a{color:inherit}
+img{max-width:100%}
+button,input,textarea,select{font:inherit}
+[hidden]{display:none!important}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.eyebrow{font:600 .76rem/1 'Inter';letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin:0 0 10px}
+section.pg{display:none}section.pg.on{display:block;animation:pgin .4s cubic-bezier(.2,.8,.2,1)}
+@keyframes pgin{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+body::before{content:'';position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:31;background:var(--cream)}
+.topline{text-align:center;font:500 .76rem/1 'Inter';letter-spacing:.06em;color:var(--ink-soft);padding:10px 16px;background:var(--cream)}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:25;background:rgba(247,241,227,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:box-shadow .3s,padding .3s}
+header.sc{box-shadow:0 10px 26px rgba(30,43,32,.08)}
+header .wrap{display:flex;align-items:center;gap:22px;height:78px}
+header.sc .wrap{height:64px}
+.logo{display:flex;align-items:center;gap:11px;cursor:pointer;margin-right:auto;background:none;border:0;color:inherit;padding:0}
+.logomark{height:46px;width:46px;border-radius:11px;flex:none;transition:height .3s,width .3s}
+header.sc .logomark{height:40px;width:40px}
+.logo b{font:600 1.28rem 'Fraunces';color:var(--ink);letter-spacing:-.01em;transition:font-size .3s}
+header.sc .logo b{font-size:1.14rem}
+nav{display:flex}
+nav a{color:var(--ink-soft);margin:0 12px;cursor:pointer;font:500 .88rem 'Inter';padding:8px 0;border-bottom:2px solid transparent;white-space:nowrap}
+nav a:hover,nav a.on{color:var(--green);border-color:var(--gold)}
+.hicons{display:flex;align-items:center;gap:14px}
+.ibtn{background:none;border:0;cursor:pointer;color:var(--ink);display:grid;place-items:center;width:34px;height:34px;border-radius:50%}
+.ibtn:hover{background:var(--sage-bg)}
+.ibtn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.7}
+.cart{background:var(--green);color:var(--cream-on-dark);border:0;border-radius:99px;padding:9px 18px;font:600 .82rem 'Inter';cursor:pointer;display:flex;align-items:center;gap:7px}
+.cart svg{width:15px;height:15px;stroke:var(--cream-on-dark);fill:none;stroke-width:2}
+.cart.bump{animation:bump .4s}@keyframes bump{50%{transform:scale(1.22)}}
+#pr{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;background:var(--gold);z-index:31;width:0}
+@media(max-width:860px){header .wrap{flex-wrap:wrap;height:auto!important;padding-top:10px;padding-bottom:10px;gap:8px 14px}nav{order:3;width:100%;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{margin:0 10px 0 0}}
+
+.searchrow{display:none;border-top:1px solid var(--line);background:var(--paper)}
+.searchrow.on{display:block}
+.searchrow .wrap{padding:14px 0 18px}
+.srow-top{display:flex;align-items:center;gap:10px}
+.srow-top .sbox{flex:1}
+.sbox{position:relative;max-width:540px}
+.sbox input{width:100%;padding:12px 44px 12px 18px;border:1.5px solid var(--line);border-radius:99px;background:var(--cream2);color:var(--ink)}
+.sbox svg{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:var(--ink-soft);fill:none;stroke-width:1.8;pointer-events:none}
+.sresults{margin-top:10px;display:grid;gap:4px;max-width:540px;max-height:50vh;overflow:auto}
+.sresult{display:flex;align-items:center;gap:12px;padding:8px;border-radius:10px;cursor:pointer;background:none;border:0;width:100%;text-align:left}
+.sresult:hover{background:var(--sage-bg)}
+.sresult img{width:40px;height:40px;border-radius:8px;background:var(--cream2);object-fit:contain;padding:3px;flex:none}
+.sresult b{font-size:.9rem;display:block}
+.sresult small{display:block;color:var(--ink-soft);font-size:.78rem;margin-top:1px}
+.sresult .p{margin-left:auto;font-weight:700;font-size:.78rem;white-space:nowrap;color:var(--ink)}
+.snoresult{color:var(--ink-soft);font-size:.86rem;padding:8px 4px}
+
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:99px;padding:14px 26px;font:600 .88rem 'Inter';cursor:pointer;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.dark{background:var(--green);color:var(--cream-on-dark);position:relative;overflow:hidden}
+.dark::after{content:'';position:absolute;top:0;left:-85%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.22),transparent);transform:skewX(-20deg);transition:left .6s}
+.dark:hover::after{left:130%}
+.gold{background:var(--gold);color:#2B2210;position:relative;overflow:hidden}
+.gold::after{content:'';position:absolute;top:0;left:-85%;width:50%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.65),transparent);transform:skewX(-20deg);transition:left .6s}
+.gold:hover::after{left:130%}
+.ghost{background:transparent;border:1.5px solid var(--green);color:var(--green)}
+.ghost.on-dark{color:var(--cream-on-dark);border-color:var(--mute-on-dark)}
+.sm{padding:9px 16px;font-size:.78rem}
+.link{background:none;border:0;color:var(--green);font:600 .88rem 'Inter';cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:0}
+.link svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;transition:transform .2s}
+.link:hover svg{transform:translateX(4px)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;background:linear-gradient(170deg,var(--cream),var(--cream2) 70%);padding:54px 0 0}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr 1fr;gap:34px;align-items:center;padding-bottom:40px}
+.blob{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:drift 16s ease-in-out infinite alternate;z-index:1}
+.b1{width:420px;height:420px;background:#D9E3C9;left:-130px;top:-110px}
+.b2{width:360px;height:360px;background:#F1DFAF;right:-110px;bottom:-60px;animation-delay:-7s}
+@keyframes drift{to{transform:translate(50px,30px) scale(1.14)}}
+.leafp{position:absolute;top:-30px;opacity:.5;animation:leaffall linear infinite;z-index:1;color:var(--sage)}
+.leafp svg{width:100%;height:100%;display:block}
+@keyframes leaffall{0%{transform:translateY(-30px) rotate(0deg)}100%{transform:translateY(620px) rotate(200deg)}}
+.hero-copy{padding-bottom:6px}
+.hero h1 span{display:block;opacity:0;transform:translateY(46px);animation:rise .9s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 span:nth-child(2){animation-delay:.15s;color:var(--green)}
+@keyframes rise{to{opacity:1;transform:none}}
+.hero-copy p{opacity:0;animation:fade .8s .55s forwards;font-size:1.08rem;margin:18px 0 26px;max-width:46ch}
+.hero-copy .btns{opacity:0;animation:fade .8s .68s forwards;display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+@keyframes fade{to{opacity:1}}
+.dots{display:flex;align-items:center;gap:16px;opacity:0;animation:fade .8s .85s forwards}
+.dotrow{display:flex;gap:7px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--line);border:0;cursor:pointer;padding:0;transition:background .2s,transform .2s}
+.dot.on{background:var(--green);transform:scale(1.3)}
+.dotcap{font:500 .82rem 'Inter';color:var(--ink-soft)}
+.stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:380px}
+.plate{position:absolute;bottom:18px;width:72%;height:36px;background:radial-gradient(ellipse,rgba(30,43,32,.16),transparent 72%)}
+.stage img{position:relative;width:62%;max-width:330px;filter:drop-shadow(0 26px 30px rgba(30,43,32,.26));animation:float 5.5s ease-in-out infinite;transition:opacity .35s ease}
+.stage img.fading{opacity:0}
+@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;padding-bottom:24px}.hero-copy{text-align:center}.hero-copy .btns,.hero-copy p{margin-left:auto;margin-right:auto}.dots{justify-content:center}.stage{min-height:260px}}
+
+.philrow{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.philrow div{padding:30px 14px;text-align:center;border-left:1px solid var(--line)}
+.philrow div:first-child{border-left:0}
+.ico{width:46px;height:46px;border-radius:50%;background:var(--sage-bg);display:inline-grid;place-items:center;margin-bottom:12px}
+.ico svg{width:21px;height:21px;stroke:var(--green);fill:none;stroke-width:1.6}
+.philrow b{display:block;font:600 .92rem 'Inter';margin-bottom:3px}
+.philrow small{color:var(--ink-soft);font-size:.8rem}
+@media(max-width:760px){.philrow{grid-template-columns:1fr 1fr}.philrow div:nth-child(2n+1){border-left:0}.philrow div:nth-child(n+3){border-top:1px solid var(--line)}}
+
+.mqtop{background:var(--green-deep);color:var(--gold);overflow:hidden;white-space:nowrap;position:relative;z-index:24}
+.mqtrack{display:flex;width:max-content;animation:mqscroll 24s linear infinite}
+.mqseg{display:flex;align-items:center;padding:10px 0;font:600 .92rem/1 'Inter';letter-spacing:.1em;white-space:nowrap}
+@keyframes mqscroll{to{transform:translateX(-50%)}}
+
+.sec{padding:66px 0}.alt{background:var(--cream2)}
+.head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;flex-wrap:wrap;margin-bottom:8px}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:22px;margin-top:30px}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:22px;text-align:left;transition:box-shadow .25s,transform .25s}
+.card:hover{box-shadow:0 18px 34px rgba(30,43,32,.1);transform:translateY(-4px)}
+.card .thumbwrap{background:var(--cream2);border-radius:14px;padding:18px 10px;margin-bottom:14px}
+.card .thumb{width:72%;margin:0 auto;display:block;cursor:pointer;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.card:hover .thumb{transform:translateY(-6px) scale(1.04)}
+.card h3{font-size:1.25rem}
+.card small{color:var(--ink-soft);display:block;font-size:.86rem;margin-top:4px}
+.row{display:flex;justify-content:space-between;align-items:center;margin-top:12px}
+.price{font:700 1.1rem 'Inter';color:var(--ink)}
+.wt{font-size:.78rem;color:var(--ink-soft)}
+.tag{display:inline-block;font:600 .66rem 'Inter';letter-spacing:.08em;text-transform:uppercase;color:var(--green);background:var(--sage-bg);border-radius:99px;padding:4px 11px;margin-bottom:10px}
+.cardbtns{display:grid;gap:8px;margin-top:14px}
+.cardbtns .btn{width:100%;padding:11px 14px;font-size:.82rem}
+.star{color:var(--gold-dim);letter-spacing:2px;font-size:.84rem}
+
+.chips{display:flex;gap:9px;flex-wrap:wrap}
+.chip{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:99px;padding:8px 19px;font:600 .82rem 'Inter';cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.chip.on{background:var(--green);color:var(--cream-on-dark);border-color:var(--green)}
+.sortsel{border:1.5px solid var(--line);background:var(--paper);color:var(--ink);border-radius:99px;padding:9px 16px;font:600 .82rem 'Inter';cursor:pointer}
+.note{font-size:.84rem;color:var(--ink-soft);background:var(--sage-bg);border-radius:12px;padding:13px 18px;margin-top:26px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+@media(max-width:860px){.two{grid-template-columns:1fr}}
+
+.band{background:var(--green);color:var(--cream-on-dark);border-radius:24px;overflow:hidden}
+.band .wrap{display:grid;grid-template-columns:1fr 1fr;gap:0;align-items:center}
+.band .copy{padding:50px 46px}
+.band .copy p{color:var(--mute-on-dark)}
+.band .art{background:linear-gradient(160deg,#274A34,#152A1D);display:flex;align-items:center;justify-content:center;padding:36px;min-height:260px;position:relative}
+.band .art img{width:58%;max-width:230px;filter:drop-shadow(0 20px 26px rgba(0,0,0,.4))}
+@media(max-width:860px){.band .wrap{grid-template-columns:1fr}.band .copy{padding:40px 28px;text-align:center}}
+
+.phil3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px}
+.phil3 div{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:26px}
+.phil3 .ico{margin-bottom:16px}
+@media(max-width:760px){.phil3{grid-template-columns:1fr}}
+
+.commit{background:var(--green-deep);color:var(--cream-on-dark);border-radius:24px;padding:50px 40px}
+.commit .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;margin-top:30px}
+.commit .ico{background:rgba(255,255,255,.08)}
+.commit .ico svg{stroke:var(--gold)}
+.commit b{display:block;font:600 1.05rem 'Inter';margin-bottom:6px}
+.commit small{color:var(--mute-on-dark)}
+@media(max-width:760px){.commit .grid3{grid-template-columns:1fr}}
+
+.cmprow{display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+.cmplist{display:flex;gap:22px;flex-wrap:wrap}
+.cmpitem{text-align:center;cursor:pointer;background:none;border:0;padding:0}
+.cmpitem img{width:64px;height:64px;border-radius:50%;object-fit:cover;background:var(--cream2);padding:8px;border:2px solid transparent;transition:border-color .2s,transform .2s}
+.cmpitem:hover img{transform:translateY(-3px)}
+.cmpitem span{display:block;margin-top:8px;font:600 .8rem 'Inter'}
+.dpcard{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:24px;max-width:320px}
+.dpcard h3{font-size:1.1rem;margin-bottom:6px}
+.dpcard p{font-size:.88rem;margin-bottom:14px}
+
+.finder{position:relative;border-radius:24px;overflow:hidden;background:linear-gradient(160deg,#233f2f,#122319);padding:70px 40px;text-align:center;color:var(--cream-on-dark)}
+.finder::before,.finder::after{content:'';position:absolute;border-radius:50%;filter:blur(60px);opacity:.3}
+.finder::before{width:300px;height:300px;background:var(--gold);left:-80px;top:-80px}
+.finder::after{width:260px;height:260px;background:var(--sage);right:-70px;bottom:-70px}
+.finder>*{position:relative;z-index:1}
+.finder p{color:var(--mute-on-dark);margin:10px auto 26px}
+
+.stats{background:var(--green-deep);color:var(--cream-on-dark);padding:56px 0}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);text-align:center;gap:10px}
+.stat b{display:block;font:600 3.2rem/1 'Fraunces';color:var(--gold);font-variant-numeric:tabular-nums}
+.stat small{color:var(--mute-on-dark)}
+@media(max-width:760px){.stats .wrap{grid-template-columns:1fr 1fr;row-gap:30px}}
+
+.news{background:var(--sage-bg);color:var(--ink);text-align:center;padding:56px 0}
+.news p{margin:8px auto 22px}
+.newsform{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.news input{padding:14px 16px;border-radius:99px;border:1.5px solid var(--line);width:min(300px,78vw);font:inherit;background:var(--paper)}
+.news input:focus-visible,a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+footer{background:var(--green-deep);color:var(--mute-on-dark);padding:48px 0 30px;font-size:.88rem}
+footer .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1.3fr;gap:26px}
+footer h3{color:var(--cream-on-dark);margin-bottom:10px;font-size:1.15rem;font-weight:600;font-family:'Fraunces'}
+footer a{display:block;color:var(--mute-on-dark);cursor:pointer;padding:3px 0;text-decoration:none}
+footer a:hover{color:var(--gold)}
+footer p{color:var(--mute-on-dark);margin:0}
+.fine{margin-top:28px;border-top:1px solid rgba(255,255,255,.08);padding-top:16px;font-size:.74rem;color:#8095868}
+@media(max-width:760px){footer .cols{grid-template-columns:1fr 1fr}}
+
+.dprev{background:var(--gold);color:#2B2210}
+.dprev .wrap{display:flex;flex-wrap:wrap;gap:18px 34px;align-items:center;justify-content:space-between;padding:18px max(20px,env(safe-area-inset-left,0px)) calc(18px + env(safe-area-inset-bottom,0px)) max(20px,env(safe-area-inset-right,0px))}
+.dprev .lead{display:flex;align-items:flex-start;gap:10px;max-width:420px}
+.dprev .lead svg{width:20px;height:20px;flex:none;margin-top:2px}
+.dprev .lead b{display:block;font-size:.92rem}
+.dprev .lead small{font-size:.8rem;opacity:.85}
+.cklist{display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.78rem;font-weight:600}
+.cklist span{display:flex;align-items:center;gap:6px;white-space:nowrap}
+.cklist svg{width:13px;height:13px;stroke:#2B2210;stroke-width:2.6;fill:none}
+.dprev .btn{background:var(--green);color:var(--cream-on-dark);white-space:nowrap}
+
+/* product detail / compare modal */
+.modal{position:fixed;inset:0;background:rgba(14,20,15,.6);display:none;place-items:center;z-index:50;padding:16px}
+.modal.on{display:grid}
+.box{background:var(--cream);border-radius:20px;max-width:880px;width:100%;max-height:90vh;overflow:auto;padding:30px;position:relative}
+.box .x{position:absolute;right:16px;top:12px;background:none;border:0;font-size:1.9rem;color:var(--ink);cursor:pointer;line-height:1}
+
+/* cart drawer */
+.cartwrap{position:fixed;inset:0;z-index:55;display:none}
+.cartwrap.on{display:block}
+.cartbg{position:absolute;inset:0;background:rgba(14,20,15,.55)}
+.cartpanel{position:absolute;right:0;top:0;bottom:0;width:min(420px,92vw);background:var(--cream);box-shadow:-18px 0 40px rgba(0,0,0,.18);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);padding-top:env(safe-area-inset-top,0px)}
+.cartwrap.on .cartpanel{transform:translateX(0)}
+.acctwrap{position:fixed;inset:0;z-index:55;display:none}
+.acctwrap.on{display:block}
+.acctbg{position:absolute;inset:0;background:rgba(14,20,15,.55)}
+.acctpanel{position:absolute;right:0;top:0;bottom:0;width:min(420px,92vw);background:var(--cream);box-shadow:-18px 0 40px rgba(0,0,0,.18);display:flex;flex-direction:column;transform:translateX(100%);transition:transform .32s cubic-bezier(.2,.8,.2,1);padding-top:env(safe-area-inset-top,0px)}
+.acctwrap.on .acctpanel{transform:translateX(0)}
+.avatar{width:64px;height:64px;border-radius:50%;background:var(--green);color:var(--cream-on-dark);display:grid;place-items:center;font:600 1.4rem 'Fraunces';margin:0 auto 14px}
+.acctinfo{display:grid;gap:14px;margin:18px 0 6px}
+.acctinfo .citem small{word-break:break-word}
+.cph{display:flex;justify-content:space-between;align-items:center;padding:20px 22px;border-bottom:1px solid var(--line);flex:none}
+.cph h3{font-size:1.25rem}
+.cph .x{background:none;border:0;font-size:1.7rem;cursor:pointer;color:var(--ink);line-height:1}
+.cpbody{flex:1;overflow:auto;padding:6px 22px 18px}
+.citm{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.citm img{width:60px;height:60px;border-radius:10px;background:var(--cream2);object-fit:contain;padding:4px;flex:none}
+.ci-info{flex:1;min-width:0}
+.citm b{display:block;font-size:.92rem}
+.citm small{color:var(--ink-soft);display:block;font-size:.76rem;margin-top:2px}
+.ciq{display:inline-flex;align-items:center;border:1.5px solid var(--line);border-radius:99px;margin-top:8px}
+.ciq button{width:26px;height:26px;border:0;background:none;cursor:pointer;font-size:14px;color:var(--ink)}
+.ciq span{min-width:20px;text-align:center;font-size:.8rem;font-weight:600}
+.ciprice{font-weight:700;font-size:.78rem;white-space:nowrap;text-align:right}
+.ciremove{background:none;border:0;color:#9A3B3B;font-size:.74rem;cursor:pointer;margin-top:7px;padding:0;display:block}
+.cpempty{text-align:center;padding:50px 14px;color:var(--ink-soft)}
+.cpempty h3{color:var(--ink);margin-bottom:6px}
+.cpfoot{padding:16px 22px;border-top:1px solid var(--line);flex:none}
+.cptotrow{display:flex;justify-content:space-between;font-weight:700;margin-bottom:14px;font-size:1.02rem}
+.coback{background:none;border:0;color:var(--green);font:600 .84rem 'Inter';cursor:pointer;display:flex;align-items:center;gap:6px;padding:0;margin-bottom:14px}
+.payopt{display:flex;gap:9px;flex-wrap:wrap;margin:6px 0 2px}
+.payopt label{border:1.5px solid var(--line);border-radius:10px;padding:9px 13px;font-size:.8rem;cursor:pointer;display:flex;align-items:center;gap:6px}
+.payopt input{accent-color:var(--green)}
+.osumm{background:var(--sage-bg);border-radius:12px;padding:14px 16px;margin:12px 0}
+.osumm div{display:flex;justify-content:space-between;font-size:.84rem;padding:3px 0}
+
+/* contact */
+.clist{display:grid;gap:16px}
+.citem{display:flex;gap:14px;align-items:flex-start}
+.citem b{display:block;font:600 .95rem 'Inter'}
+.citem small{color:var(--ink-soft)}
+.social{display:flex;gap:10px;margin-top:18px}
+.social a{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--line);color:var(--green);display:grid;place-items:center}
+.social a:hover{background:var(--sage-bg)}
+.mapbox{margin-top:10px;border-radius:14px;overflow:hidden;border:1px solid var(--line);height:220px}
+.mapbox iframe{display:block;width:100%;height:100%;border:0}
+.maplink{display:flex;align-items:center;gap:14px;margin-top:10px;border-radius:14px;border:1px solid var(--line);background:linear-gradient(135deg,rgba(31,61,44,.06),rgba(201,162,74,.08));padding:18px;text-decoration:none;transition:transform .25s,box-shadow .25s}
+.maplink:hover{transform:translateY(-2px);box-shadow:0 10px 24px rgba(31,61,44,.12)}
+.maplink .mico{flex:none;width:48px;height:48px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center}
+.maplink b{display:block;font:600 .98rem 'Inter';color:var(--ink)}
+.maplink small{display:block;color:var(--ink2);font-size:.85rem;margin-top:2px}
+.maplink .go{margin-left:auto;flex:none;color:var(--green)}
+form.contact{display:grid;gap:14px}
+.fld label{display:block;font:600 .76rem 'Inter';letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+.inp{width:100%;padding:13px 15px;border:1.5px solid var(--line);border-radius:10px;background:var(--paper);color:var(--ink)}
+.inp:focus-visible{outline:2px solid var(--gold);outline-offset:1px}
+.frow{display:flex;gap:14px;flex-wrap:wrap}
+.frow .fld{flex:1 1 200px}
+.sentok{display:flex;align-items:center;gap:12px;background:var(--sage-bg);color:#2F4419;border-radius:12px;padding:16px 18px;font-size:.92rem;font-weight:500;opacity:0;max-height:0;overflow:hidden;transition:opacity .25s,max-height .25s,padding .25s,margin .25s}
+.sentok.show{opacity:1;max-height:90px;margin-top:16px}
+.sentok svg{width:19px;height:19px;flex:none;stroke:#2F4419;fill:none;stroke-width:2}
+
+details{border-bottom:1px solid var(--line);padding:16px 0}
+details summary{cursor:pointer;font:600 1.02rem 'Inter';list-style:none;display:flex;justify-content:space-between;align-items:center;gap:14px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:'+';font-size:1.3rem;color:var(--green);flex:none}
+details[open] summary::after{content:'–'}
+details p{margin:12px 0 0}
+
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));left:50%;transform:translate(-50%,90px);background:var(--green);color:var(--cream-on-dark);padding:13px 24px;border-radius:99px;transition:transform .3s;z-index:60;font:500 .9rem 'Inter'}
+.toast.on{transform:translate(-50%,0)}
+
+.mnav{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;background:var(--paper);border-top:1px solid var(--line);padding:8px max(10px,env(safe-area-inset-left,0px)) calc(8px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-right,0px))}
+.mnav .row4{display:grid;grid-template-columns:repeat(4,1fr)}
+.mnav button{background:none;border:0;display:flex;flex-direction:column;align-items:center;gap:3px;color:var(--ink-soft);font:600 .68rem 'Inter';cursor:pointer;padding:4px}
+.mnav button.on{color:var(--green)}
+.mnav svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7}
+@media(max-width:700px){.mnav{display:block}body{padding-bottom:62px}}
+
+.rv{opacity:0;transform:translateY(32px);transition:opacity .7s,transform .7s}
+.rv.in{opacity:1;transform:none}
+.card.rv{transition:opacity .7s,transform .22s,box-shadow .22s}
+</style>
+</head>
+<body>
+
+<div class="mqtop"><div class="mqtrack"><span class="mqseg" id="mqA"></span><span class="mqseg" id="mqB"></span></div></div>
+<div class="topline">Discover a naturally inspired daily routine.</div>
+<header><div class="wrap">
+<button class="logo" onclick="go('home')">
+<svg class="logomark" viewBox="0 0 48 48" role="img" aria-label="Healthy Mine logo">
+<rect width="48" height="48" rx="11" fill="var(--green-deep)"/>
+<path d="M24 8.5 L40.5 21 V39 H7.5 V21 Z" fill="none" stroke="var(--gold)" stroke-width="2.3" stroke-linejoin="round"/>
+<path d="M18.5 39 V26.5 H29.5 V39" fill="none" stroke="var(--gold)" stroke-width="2.1" stroke-linejoin="round"/>
+<circle cx="24" cy="19" r="2.3" fill="var(--gold)"/>
+</svg>
+<b>Healthy Mine</b></button>
+<nav><a data-p="home" class="on" onclick="go('home')">Home</a><a data-p="about" onclick="go('about')">About Us</a><a data-p="products" onclick="go('products')">Products</a><a data-p="difference" onclick="go('difference')">Our Difference</a><a data-p="faqs" onclick="go('faqs')">FAQs</a><a data-p="contact" onclick="go('contact')">Contact</a></nav>
+<div class="hicons">
+<button class="ibtn" id="searchBtn" aria-label="Search" onclick="toggleSearch()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
+<button class="ibtn" id="acctBtn" aria-label="Account" onclick="openAccount()"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c1.2-4.2 4.4-6.4 7.5-6.4s6.3 2.2 7.5 6.4"/></svg></button>
+<button class="cart" onclick="openCart()"><svg viewBox="0 0 24 24"><path d="M4 5h2l2 11h11l2-8H7.2"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>Cart (<span id="cc">0</span>)</button>
+</div>
+</div>
+<div class="searchrow" id="searchRow"><div class="wrap">
+<div class="srow-top">
+<div class="sbox"><input id="searchInput" placeholder="Search products…" oninput="doSearch(this.value)" aria-label="Search products"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+<button type="button" class="ibtn" aria-label="Close search" onclick="closeSearch()"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+<div class="sresults" id="sresults"></div>
+</div></div>
+</header>
+
+<main>
+<!-- ================= HOME ================= -->
+<section class="pg on" id="home">
+<div class="hero"><i class="blob b1"></i><i class="blob b2"></i>
+<div class="wrap">
+<div class="hero-copy">
+<p class="eyebrow">Plant-based daily nutrition</p>
+<h1><span>Make Every Day a</span><span>Little More Nourishing.</span></h1>
+<p>Meet Daily Boost by Healthy Mine — a thoughtfully presented nutrition blend designed to complement your everyday routine.</p>
+<div class="btns"><button class="btn dark" onclick="go('products')">Explore Daily Boost</button><button class="btn ghost" onclick="go('about')">Discover Our Story</button></div>
+<div class="dots"><div class="dotrow" id="heroDots"></div><span class="dotcap" id="heroCap"></span></div>
+</div>
+<div class="stage"><div class="plate"></div><img id="heroImg" src="" alt=""></div>
+</div></div>
+
+<div class="philrow wrap" style="max-width:1180px;margin:0 auto">
+<div><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.2 6 10.5a6 6 0 0 1-12 0c0-3.3 3-6.5 6-10.5z"/></svg></span><b>Plant-Inspired Nutrition</b><small>Whole seeds, grains and herbs</small></div>
+<div><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><b>Thoughtful Product Design</b><small>Every detail considered</small></div>
+<div><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><b>Everyday Wellness Routine</b><small>Fits your daily rhythm</small></div>
+<div><span class="ico"><svg viewBox="0 0 24 24"><path d="M20 12l-8 8-8-8 8-8 8 8z"/><circle cx="12" cy="12" r="2"/></svg></span><b>Nature-Inspired Branding</b><small>Simple, honest packaging</small></div>
+</div>
+
+<div class="sec"><div class="wrap">
+<div class="head-row"><div><p class="eyebrow">The range</p><h2>Meet Your Daily Boost</h2></div><p style="margin:0">One product. Four unique visual concepts.</p></div>
+<div class="grid" id="featured"></div>
+</div></div>
+
+<div class="sec alt"><div class="wrap">
+<div class="band"><div class="wrap">
+<div class="copy"><p class="eyebrow" style="color:var(--gold)">Our philosophy</p><h2>A More Thoughtful Everyday Ritual</h2><p>Healthy Mine is about bringing nature-inspired nutrition into your daily life. We create simple, intentional products that fit your routine and support your overall well-being.</p><button class="btn gold" onclick="go('about')">Read Our Story</button></div>
+<div class="art"><img id="bandImg1" src="" alt="Healthy Mine jar"></div>
+</div></div>
+</div></div>
+
+<div class="sec"><div class="wrap">
+<div class="head-row"><div><p class="eyebrow">Compare looks</p><h2>Explore the Collection — All Variants</h2></div></div>
+<div class="cmprow">
+<div class="cmplist" id="cmpList"></div>
+<div class="dpcard" style="margin-left:auto">
+<h3>Design Preview</h3>
+<p>Review the different packaging concepts and help us pick the perfect look.</p>
+<button class="link" onclick="openCompare()">View Comparison <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+</div>
+</div>
+</div></div>
+
+<div class="sec alt"><div class="wrap">
+<div class="finder">
+<p class="eyebrow" style="color:var(--gold)">Pick your favourite</p>
+<h2 style="color:var(--cream-on-dark)">Find Your Daily Boost.</h2>
+<p>Four unique looks. One natural choice.</p>
+<button class="btn gold" onclick="go('products')">Explore All Variants</button>
+</div>
+</div></div>
+
+<div class="stats"><div class="wrap">
+<div class="stat"><b data-n="4">0</b><small>Visual concepts</small></div>
+<div class="stat"><b data-n="100" data-s="%">0</b><small>Natural ingredients</small></div>
+<div class="stat"><b data-n="0">0</b><small>Preservatives</small></div>
+<div class="stat"><b data-n="150" data-s="g">0</b><small>Net weight per jar</small></div>
+</div></div>
+
+<div class="news"><p class="eyebrow" style="justify-content:center;display:flex">Stay in the loop</p><h2>Get updates on Healthy Mine</h2><p>Join the list for recipes and new blend concepts.</p>
+<form class="newsform" onsubmit="event.preventDefault();toast('Thanks — subscribed (mockup)');this.reset()"><input type="email" required placeholder="Your email" aria-label="Email"><button class="btn dark" type="submit">Subscribe</button></form></div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="pg" id="about">
+<div class="sec"><div class="wrap">
+<p class="eyebrow">About Us</p><h1 style="font-size:clamp(2.1rem,4.4vw,3.2rem)">Everyday Nutrition, Thoughtfully Presented.</h1>
+<p style="margin-top:14px;max-width:70ch">Healthy Mine is a brand concept focused on plant-based daily nutrition and an approachable wellness routine. We create products that fit your lifestyle and bring a little more nature into your everyday.</p>
+</div></div>
+
+<div class="sec alt"><div class="wrap">
+<p class="eyebrow">Our philosophy</p><h2>What guides the design</h2>
+<div class="phil3">
+<div><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.2 6 10.5a6 6 0 0 1-12 0c0-3.3 3-6.5 6-10.5z"/></svg></span><b>Nature Inspired</b><p style="font-size:.92rem">We draw inspiration from the natural world.</p></div>
+<div><span class="ico"><svg viewBox="0 0 24 24"><path d="M4 17l6-10 4 7 3-4 3 7H4z"/></svg></span><b>Thoughtfully Designed</b><p style="font-size:.92rem">Every detail is considered for a better experience.</p></div>
+<div><span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M8.5 12l2.3 2.3L15.5 9.5"/></svg></span><b>Everyday Simplicity</b><p style="font-size:.92rem">Wellness should be simple and accessible.</p></div>
+</div>
+</div></div>
+
+<div class="sec"><div class="wrap two">
+<div><p class="eyebrow">Behind the brand</p><h2>The Story Behind the Design</h2><p>From the earthy kraft-style packaging to the botanical identity, every element is designed to feel natural, calm and authentic. The four variations give you the freedom to choose the look that fits your style.</p><button class="link" onclick="go('products')">Explore Products <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>
+<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap" id="aboutStory"></div>
+</div></div>
+
+<div class="sec alt"><div class="wrap">
+<div class="commit">
+<p class="eyebrow" style="color:var(--gold)">Our commitment</p><h2 style="color:var(--cream-on-dark)">Why Trust The Jar</h2>
+<div class="grid3">
+<div><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span><b>Transparent Communication</b><small>We believe in being open, honest and responsible in everything we share.</small></div>
+<div><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 5.5 5.8.5-4.4 3.9 1.4 5.7L12 14.9l-5 2.7 1.4-5.7-4.4-3.9 5.8-.5z"/></svg></span><b>Thoughtful Presentation</b><small>Every detail, from label to layout, is considered with care.</small></div>
+<div><span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21V11"/><path d="M12 15c-4.5 0-7-3-7-8 5 0 7 3 7 8z"/><path d="M12 11c4 0 6-2.5 6-6.5-4 0-6 2.5-6 6.5z"/></svg></span><b>A More Conscious Tomorrow</b><small>Our goal is to create products and experiences you can feel good about.</small></div>
+</div>
+</div>
+</div></div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section class="pg" id="products">
+<div class="sec"><div class="wrap">
+<p class="eyebrow">Products</p><h1 style="font-size:clamp(2.1rem,4.4vw,3.2rem)">Explore the Daily Boost Collection</h1>
+<p style="margin-top:12px">One signature product identity. A collection of distinctive visual concepts.</p>
+
+<div class="head-row" style="margin-top:30px">
+<div class="chips" id="chips"></div>
+<select class="sortsel" id="sortsel" onchange="render(curCat)"><option value="featured">Sort by: Featured</option><option value="az">Sort by: Name A–Z</option><option value="lo">Sort by: Price low–high</option><option value="hi">Sort by: Price high–low</option></select>
+</div>
+
+<div class="grid" id="all"></div>
+<p class="note">Product variations are visual concepts for review. Prices are shown in ₹ with an indicative $ conversion for reference. Final formulas, pricing and availability require approval.</p>
+</div></div>
+
+<div class="sec alt"><div class="wrap">
+<div class="band"><div class="wrap">
+<div class="copy"><p class="eyebrow" style="color:var(--gold)">Build a routine</p><h2>Customise Your Routine</h2><p>Same trusted identity. Four distinctive looks.</p><button class="btn gold" onclick="openCompare()">Compare All Variants</button></div>
+<div class="art" id="groupArt" style="gap:-10px"></div>
+</div></div>
+</div></div>
+
+<div class="sec"><div class="wrap">
+<p class="eyebrow">FAQs</p><h2>Good to know</h2>
+<div style="max-width:720px;border-top:1px solid var(--line)" id="faqMini"></div>
+</div></div>
+</section>
+
+<!-- ================= OUR DIFFERENCE ================= -->
+<section class="pg" id="difference">
+<div class="sec"><div class="wrap">
+<p class="eyebrow">Our Difference</p><h1 style="font-size:clamp(2.1rem,4.4vw,3.2rem)">A Recognisable Brand Identity.</h1>
+<p style="margin-top:14px;max-width:70ch">A consistent design language, a thoughtful product range and a natural visual style — everything works together to make Healthy Mine instantly recognisable.</p>
+</div></div>
+
+<div class="sec alt"><div class="wrap two">
+<div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap" id="diffVariants"></div>
+<div><p class="eyebrow">Product range</p><h2>Distinctive Product Variations</h2><p>Four unique looks. Same trusted identity — each variant keeps the brand instantly recognisable while giving its own character.</p></div>
+</div></div>
+
+<div class="sec"><div class="wrap two">
+<div><p class="eyebrow">Visual language</p><h2>A Nature-Inspired Visual Language</h2><p>Natural textures, earthy tones and botanical elements create a calm and premium feel across every touchpoint — packaging, website and social.</p></div>
+<div class="art" style="background:linear-gradient(160deg,#274A34,#152A1D);border-radius:20px;display:flex;align-items:center;justify-content:center;min-height:240px;padding:30px"><img id="diffImg" src="" alt="" style="width:50%;max-width:200px;filter:drop-shadow(0 20px 26px rgba(0,0,0,.4))"></div>
+</div></div>
+
+<div class="sec alt"><div class="wrap" style="text-align:center;max-width:680px">
+<p class="eyebrow" style="justify-content:center;display:flex">Discovery</p><h2>A Simpler Product Discovery Experience</h2><p style="margin:0 auto 22px">Easy to explore. Easy to choose. Designed for you.</p>
+<button class="btn dark" onclick="go('products')">Explore Products</button>
+</div></div>
+</section>
+
+<!-- ================= FAQS ================= -->
+<section class="pg" id="faqs">
+<div class="sec"><div class="wrap">
+<p class="eyebrow">FAQs</p><h1 style="font-size:clamp(2.1rem,4.4vw,3.2rem)">Your Questions Answered</h1>
+<div style="max-width:760px;border-top:1px solid var(--line);margin-top:30px" id="faqFull"></div>
+<div style="text-align:center;margin-top:36px"><button class="btn dark" onclick="go('contact')">Contact Us</button></div>
+</div></div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="pg" id="contact">
+<div class="sec"><div class="wrap two" style="align-items:start">
+<div>
+<p class="eyebrow">Contact Us</p><h1 style="font-size:clamp(2.1rem,4.4vw,3rem)">We'd Love to Hear From You</h1>
+<p style="margin-top:12px">Have a question, need more information, or just want to share your feedback? We're here to help.</p>
+
+<div class="clist" style="margin-top:30px">
+<div class="citem"><span class="ico" style="flex:none"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.5 6.5l8.5 6.5 8.5-6.5"/></svg></span><div><b>Email</b><small>hello@healthymine.example</small></div></div>
+<div class="citem"><span class="ico" style="flex:none"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span><div><b>Phone</b><small>+91 98765 43210</small></div></div>
+<div class="citem"><span class="ico" style="flex:none"><svg viewBox="0 0 24 24"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div><b>Address</b><small>12 Sample Street, Nagercoil, Tamil Nadu 629001</small></div></div>
+<div class="citem"><span class="ico" style="flex:none"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg></span><div><b>Business Hours</b><small>Mon–Sat, 9am–7pm · Sunday closed</small></div></div>
+</div>
+
+<div style="margin-top:22px"><b style="font:600 .95rem 'Inter'">Follow Us</b>
+<div class="social">
+<a href="#" aria-label="Instagram" onclick="event.preventDefault();toast('Instagram — preview only')"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="4.5"/><circle cx="12" cy="12" r="3.6"/><circle cx="16.8" cy="7.2" r="1" fill="currentColor"/></svg></a>
+<a href="#" aria-label="Facebook" onclick="event.preventDefault();toast('Facebook — preview only')"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M14.5 8H17V4.5h-2.5A3.5 3.5 0 0 0 11 8v2.5H8.5V14H11v6.5h3.5V14H17l.5-3.5h-3V8.5a.5.5 0 0 1 .5-.5z"/></svg></a>
+<a href="#" aria-label="YouTube" onclick="event.preventDefault();toast('YouTube — preview only')"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="6" width="18" height="12" rx="3.5"/><path d="M10.5 9.5v5l4.3-2.5z" fill="currentColor" stroke="none"/></svg></a>
+</div></div>
+
+<div style="margin-top:22px"><b style="font:600 .95rem 'Inter'">Find Us</b>
+<a class="maplink" href="https://maps.google.com/maps?q=Nagercoil,Tamil%20Nadu%20629001&z=14" target="_blank" rel="noopener">
+<span class="mico"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.4"/></svg></span>
+<span><b>Healthy Mine — Sample Location</b><small>Nagercoil, Tamil Nadu 629001 · Opens in Google Maps</small></span>
+<span class="go"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg></span>
+</a>
+</div>
+</div>
+
+<div>
+<p class="eyebrow">Send a message</p><h2 style="font-size:1.7rem">How can we help?</h2>
+<form class="contact" style="margin-top:14px" onsubmit="sendForm(event)">
+<div class="frow"><div class="fld"><label for="cn">Full name</label><input class="inp" id="cn" required placeholder="Your name"></div><div class="fld"><label for="ce">Email address</label><input class="inp" id="ce" type="email" required placeholder="you@example.com"></div></div>
+<div class="frow"><div class="fld"><label for="cp">Phone number (optional)</label><input class="inp" id="cp" type="tel" placeholder="+91"></div><div class="fld"><label for="csub">Subject</label><select class="inp" id="csub"><option>Product question</option><option>Order support</option><option>Bulk / wholesale</option><option>Distributorship</option><option>Feedback</option></select></div></div>
+<div class="fld"><label for="cm">Message</label><textarea class="inp" id="cm" rows="5" required placeholder="Tell us how we can help"></textarea></div>
+<button class="btn dark" type="submit" style="justify-self:start">Submit</button>
+</form>
+<div class="sentok" id="sentok"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>Message Sent Successfully! This is a frontend demo. No mail has been sent.</span></div>
+</div>
+</div></div>
+</section>
+</main>
+
+<footer><div class="wrap"><div class="cols">
+<div><h3>Healthy Mine</h3><p>Plant-based nutrition for a better you.</p></div>
+<div><h3>Links</h3><a onclick="go('home')">Home</a><a onclick="go('about')">About Us</a><a onclick="go('products')">Products</a><a onclick="go('difference')">Our Difference</a><a onclick="go('faqs')">FAQs</a><a onclick="go('contact')">Contact</a></div>
+<div><h3>Policies</h3><a>Shipping</a><a>Returns</a><a>Privacy</a><a>Terms</a></div>
+<div><h3>Reach us</h3><p>+91 98765 43210<br>hello@healthymine.example<br>Nagercoil, Tamil Nadu</p></div>
+</div>
+<p class="fine">© 2026 Healthy Mine. Website mockup with sample content for client review. Final content, pricing, ingredients and claims are subject to approval. Designed &amp; built by W2R Team 7.</p>
+</div></footer>
+
+<div class="dprev"><div class="wrap">
+<div class="lead"><svg viewBox="0 0 24 24" fill="none" stroke="#2B2210" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 8v4.5l3 2"/></svg><div><b>Design Preview</b><small>This is a visual mockup for customer review. Final content, pricing and details are subject to approval.</small></div></div>
+<div class="cklist">
+<span><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4L19 7.5"/></svg>Logo &amp; Brand Identity</span>
+<span><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4L19 7.5"/></svg>Colour Theme</span>
+<span><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4L19 7.5"/></svg>Product Design</span>
+<span><svg viewBox="0 0 24 24"><path d="M5 12.5l4 4L19 7.5"/></svg>Website Content</span>
+</div>
+<button class="btn" onclick="go('contact')">Your Feedback Matters</button>
+</div></div>
+
+<nav class="mnav"><div class="row4" id="mnavRow"></div></nav>
+
+<div class="modal" id="m" onclick="if(event.target===this)this.classList.remove('on')"><div class="box"><button class="x" aria-label="Close" onclick="m.classList.remove('on')">×</button><div id="mb"></div></div></div>
+
+<div class="cartwrap" id="cartWrap">
+<div class="cartbg" onclick="closeCart()"></div>
+<aside class="cartpanel" id="cartPanel">
+<div class="cph"><h3 id="cartTitle">Your Cart</h3><button class="x" aria-label="Close cart" onclick="closeCart()">×</button></div>
+<div class="cpbody" id="cartBody"></div>
+<div class="cpfoot" id="cartFoot" style="display:none"></div>
+</aside>
+</div>
+
+<div class="acctwrap" id="acctWrap">
+<div class="acctbg" onclick="closeAccount()"></div>
+<aside class="acctpanel" id="acctPanel">
+<div class="cph"><h3 id="acctTitle">Sign In</h3><button class="x" aria-label="Close account panel" onclick="closeAccount()">×</button></div>
+<div class="cpbody" id="acctBody"></div>
+</aside>
+</div>
+
+<div class="toast" id="t"></div>
+
+<script>
+const BLOB = {
+  daily:{classic:'2dc491d987d5b2b63266224f4ba2611b'},
+  golden:{classic:'cde0d5c1b3d4272f0430a2399c2c9958'},
+  beet:{classic:'861d959b0e8b932007fe6d65d139cd7d'},
+  choco:{classic:'46fecfb6c90cd8c0ca108ef23bd2054e'},
+  moringa:{classic:'bb62fcb745044d88c2d9a3b4f5e4e7e8'},
+  ragi:{classic:'66c7cc60ec0452bce8493e7b9853466e'}
+};
+const IMG=b=>'images/'+BLOB[b].classic+'.webp';
+
+const V=[
+ {id:'daily',n:'Original',sub:'Classic blend with a natural and earthy feel.',price:249,cat:'Original',
+  desc:'Our original blend of green gram, flax, sesame, pumpkin seeds, cumin and herbs. Slow-roasted and ready to mix — your everyday dose of plant protein, healthy fats and minerals.',
+  ingr:['Green gram','Flax seeds','Sesame','Pumpkin seeds','Cumin','Curry leaf']},
+ {id:'moringa',n:'Green',sub:'A fresh take on daily nutrition.',price:299,cat:'Green',
+  desc:'Moringa leaf, curry leaf and seeds in a fresh green blend packed with vitamins and minerals. Great on dosa, rice or in buttermilk.',
+  ingr:['Moringa leaf','Curry leaf','Green gram','Flax seeds','Sesame','Cumin']},
+ {id:'beet',n:'Berry',sub:'A vibrant blend for your routine.',price:279,cat:'Berry',
+  desc:'Sun-dried beetroot meets roasted seeds and dates for a naturally sweet, deep-red blend that supports healthy energy every day.',
+  ingr:['Beetroot','Green gram','Flax seeds','Sesame','Dates','Cardamom']},
+ {id:'choco',n:'Cocoa',sub:'Rich in colour, made for you.',price:259,cat:'Cocoa',
+  desc:'Real cocoa, almonds and roasted seeds — a chocolatey milk mix with no refined sugar and no artificial flavour.',
+  ingr:['Cocoa','Almonds','Green gram','Flax seeds','Sesame','Jaggery']}
+];
+const byId=o=>V.find(v=>v.id===o);
+const $=s=>document.querySelector(s);
+let curCat='All';
+const RATE=83; // sample ₹ per $1 reference rate
+const priceStr=p=>'₹'+p.toLocaleString('en-IN')+'  ·  $'+(p/RATE).toFixed(2);
+let cartItems=[]; // {id, qty}
+
+const FAQ=[
+ {q:'What is Healthy Mine Daily Boost?',a:'Healthy Mine Daily Boost is a plant-based nutrition product concept — a seed, grain and herb blend in a jar. (Final formulation to be confirmed.)'},
+ {q:'What product variants are available?',a:'Four visual concepts to choose from: Original, Green, Berry and Cocoa.'},
+ {q:'What is the net weight?',a:'150 g per jar (sample spec).'},
+ {q:'Where can I find the ingredients?',a:'The ingredient list for each variant is shown on its product card — full nutrition labelling will be added on approval.'},
+ {q:'How should the product be stored?',a:'Store in a cool, dry place away from direct sunlight, with the lid closed tightly.'},
+ {q:'How can I contact Healthy Mine?',a:'Use the Contact page — we usually reply within one working day.'},
+ {q:'Where can I find product and nutritional information?',a:'Full nutrition information will be added to each product page once the formulas are approved.'}
+];
+
+function card(v){
+  return `<div class="card rv"><div class="thumbwrap"><img class="thumb" src="${IMG(v.id)}" alt="${v.n} jar" onclick="openProduct('${v.id}')"></div>
+  <span class="tag">${v.cat}</span><h3>${v.n}</h3><small>${v.sub}</small>
+  <div class="row"><span class="wt">150 g</span><span class="price">${priceStr(v.price)}</span></div>
+  <div class="cardbtns"><button class="btn dark" onclick="openProduct('${v.id}')">View Product</button><button class="btn ghost" onclick="addToCart('${v.id}')">Add to Bag</button></div></div>`;
+}
+function bumpCart(){const c=$('.cart');c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump')}
+function cartCount(){return cartItems.reduce((s,i)=>s+i.qty,0)}
+function cartTotal(){return cartItems.reduce((s,i)=>s+i.qty*byId(i.id).price,0)}
+function addToCart(id,qty){
+  qty=qty||1;
+  const row=cartItems.find(i=>i.id===id);
+  if(row)row.qty+=qty;else cartItems.push({id,qty});
+  $('#cc').textContent=cartCount();bumpCart();
+  toast(byId(id).n+' added to bag');
+  if($('#cartWrap').classList.contains('on'))renderCartDrawer('cart');
+}
+function changeQty(id,d){
+  const row=cartItems.find(i=>i.id===id);if(!row)return;
+  row.qty=Math.max(1,Math.min(20,row.qty+d));
+  $('#cc').textContent=cartCount();renderCartDrawer('cart');
+}
+function removeFromCart(id){
+  cartItems=cartItems.filter(i=>i.id!==id);
+  $('#cc').textContent=cartCount();renderCartDrawer('cart');
+}
+function openCart(){closeSearch();renderCartDrawer('cart');$('#cartWrap').classList.add('on')}
+function closeCart(){$('#cartWrap').classList.remove('on')}
+function renderCartDrawer(mode){
+  const body=$('#cartBody'),foot=$('#cartFoot'),title=$('#cartTitle');
+  if(mode==='cart'){
+    title.textContent='Your Cart';
+    if(!cartItems.length){
+      body.innerHTML='<div class="cpempty"><h3>Your cart is empty</h3><p>Add a blend to see it here.</p><button class="btn dark" onclick="closeCart();go(\'products\')">Explore Products</button></div>';
+      foot.style.display='none';
+      return;
+    }
+    body.innerHTML=cartItems.map(i=>{
+      const v=byId(i.id);
+      return `<div class="citm"><img src="${IMG(v.id)}" alt="${v.n}"><div class="ci-info"><b>${v.n}</b><small>${v.cat} · 150 g</small>
+      <div class="ciq"><button type="button" aria-label="Decrease quantity" onclick="changeQty('${v.id}',-1)">−</button><span>${i.qty}</span><button type="button" aria-label="Increase quantity" onclick="changeQty('${v.id}',1)">+</button></div>
+      <button type="button" class="ciremove" onclick="removeFromCart('${v.id}')">Remove</button></div>
+      <div class="ciprice">${priceStr(v.price*i.qty)}</div></div>`;
+    }).join('');
+    foot.style.display='block';
+    foot.innerHTML=`<div class="cptotrow"><span>Subtotal</span><span>${priceStr(cartTotal())}</span></div><button class="btn dark" style="width:100%" onclick="renderCartDrawer('checkout')">Buy Now</button>`;
+  } else if(mode==='checkout'){
+    title.textContent='Checkout';
+    foot.style.display='none';
+    body.innerHTML=`<button type="button" class="coback" onclick="renderCartDrawer('cart')"><svg viewBox="0 0 24 24" width="15" height="15" stroke="currentColor" fill="none" stroke-width="2"><path d="M15 6l-6 6 6 6"/></svg>Back to cart</button>
+    <h3 style="font-size:1.05rem;margin-bottom:10px">Delivery &amp; payment details</h3>
+    <form id="checkoutForm" onsubmit="placeOrder(event)">
+    <div class="fld" style="margin-bottom:12px"><label>Full name</label><input class="inp" id="ochkName" required placeholder="Your name"></div>
+    <div class="fld" style="margin-bottom:12px"><label>Phone</label><input class="inp" id="ochkPhone" type="tel" required placeholder="+91"></div>
+    <div class="fld" style="margin-bottom:12px"><label>Email</label><input class="inp" id="ochkEmail" type="email" required placeholder="you@example.com"></div>
+    <div class="fld" style="margin-bottom:12px"><label>Delivery address</label><textarea class="inp" id="ochkAddr" rows="3" required placeholder="House no, street, area"></textarea></div>
+    <div class="frow" style="margin-bottom:12px"><div class="fld"><label>City</label><input class="inp" id="ochkCity" required placeholder="City"></div><div class="fld"><label>Pincode</label><input class="inp" id="ochkPin" required placeholder="6-digit pincode"></div></div>
+    <div class="fld"><label>Payment method</label>
+    <div class="payopt">
+    <label><input type="radio" name="pay" value="Cash on delivery" checked>Cash on delivery</label>
+    <label><input type="radio" name="pay" value="UPI">UPI</label>
+    <label><input type="radio" name="pay" value="Card">Card</label>
+    </div></div>
+    <div class="osumm"><div><span>Items (${cartCount()})</span><span>${priceStr(cartTotal())}</span></div><div><span>Delivery</span><span>Free (sample)</span></div><div style="font-weight:700;border-top:1px solid var(--line);padding-top:8px;margin-top:4px"><span>Total</span><span>${priceStr(cartTotal())}</span></div></div>
+    <button class="btn dark" type="submit" style="width:100%">Place Order</button>
+    </form>`;
+  } else if(mode==='done'){
+    title.textContent='Order Confirmed';
+    foot.style.display='none';
+    body.innerHTML=`<div class="cpempty"><span class="ico" style="width:60px;height:60px;margin:0 auto 16px"><svg viewBox="0 0 24 24" width="26" height="26" stroke="var(--green)" fill="none" stroke-width="2"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span><h3>Order placed!</h3><p>This is a mockup checkout — no real order has been placed or charged.</p><button class="btn dark" onclick="closeCart()">Done</button></div>`;
+  }
+}
+function placeOrder(e){
+  e.preventDefault();
+  cartItems=[];
+  $('#cc').textContent=0;
+  renderCartDrawer('done');
+  toast('Order placed (mockup) — no real order was made');
+}
+
+/* ---- account ---- */
+let authUser=null;
+function openAccount(){
+  closeSearch();closeCart();
+  $('#acctWrap').classList.add('on');
+  renderAccount(authUser?'profile':'login');
+}
+function closeAccount(){$('#acctWrap').classList.remove('on')}
+function initials(n){
+  n=(n||'').trim();
+  if(!n)return'?';
+  const p=n.split(/\s+/);
+  return(p[0][0]+(p[1]?p[1][0]:'')).toUpperCase();
+}
+function renderAccount(mode){
+  const title=$('#acctTitle'),body=$('#acctBody');
+  if(mode==='login'){
+    title.textContent='Sign In';
+    body.innerHTML=`<p style="color:var(--ink2);font-size:.92rem;margin-bottom:16px">Sign in to track your orders and save your details. This is a mockup — no account data leaves this preview.</p>
+    <form onsubmit="loginSubmit(event)">
+    <div class="fld"><label>Full Name</label><input class="inp" id="accName" required placeholder="Your name"></div>
+    <div class="fld"><label>Email</label><input class="inp" id="accEmail" type="email" required placeholder="you@email.com"></div>
+    <div class="fld"><label>Phone</label><input class="inp" id="accPhone" required placeholder="10-digit mobile number"></div>
+    <div class="fld"><label>Password</label><input class="inp" id="accPass" type="password" required placeholder="••••••••"></div>
+    <button class="btn dark" type="submit" style="width:100%;margin-top:6px">Sign In</button>
+    <p style="color:var(--ink2);font-size:.82rem;margin-top:12px;text-align:center">Mockup login — any details will work, nothing is verified.</p>
+    </form>`;
+  }else{
+    title.textContent='My Account';
+    body.innerHTML=`<div class="avatar">${initials(authUser.name)}</div>
+    <div class="acctinfo">
+    <div class="citem"><b>Name</b><small>${authUser.name}</small></div>
+    <div class="citem"><b>Email</b><small>${authUser.email}</small></div>
+    <div class="citem"><b>Phone</b><small>${authUser.phone}</small></div>
+    </div>
+    <button class="btn ghost" style="width:100%;margin-top:18px" onclick="logout()">Log Out</button>`;
+  }
+}
+function loginSubmit(e){
+  e.preventDefault();
+  authUser={name:$('#accName').value.trim()||'Guest User',email:$('#accEmail').value.trim(),phone:$('#accPhone').value.trim()};
+  renderAccount('profile');
+  toast('Signed in — welcome, '+authUser.name.split(' ')[0]+'!');
+  setTimeout(closeAccount,900);
+}
+function logout(){
+  authUser=null;
+  renderAccount('login');
+  toast('Logged out');
+}
+
+/* ---- search ---- */
+function toggleSearch(){
+  const r=$('#searchRow');
+  r.classList.toggle('on');
+  if(r.classList.contains('on')){closeCart();$('#searchInput').value='';doSearch('');setTimeout(()=>$('#searchInput').focus(),60)}
+}
+function closeSearch(){$('#searchRow').classList.remove('on')}
+function doSearch(q){
+  q=q.trim().toLowerCase();
+  const el=$('#sresults');
+  if(!q){el.innerHTML='';return}
+  const res=V.filter(v=>v.n.toLowerCase().includes(q)||v.sub.toLowerCase().includes(q)||v.cat.toLowerCase().includes(q)||v.desc.toLowerCase().includes(q));
+  el.innerHTML=res.length?res.map(v=>`<button type="button" class="sresult" onclick="toggleSearch();openProduct('${v.id}')"><img src="${IMG(v.id)}" alt=""><span><b>${v.n}</b><small>${v.sub}</small></span><span class="p">${priceStr(v.price)}</span></button>`).join(''):`<div class="snoresult">No products found for "${q}".</div>`;
+}
+function toast(s){const t=$('#t');t.textContent=s;t.classList.add('on');clearTimeout(t.k);t.k=setTimeout(()=>t.classList.remove('on'),2300)}
+function go(p){
+  document.querySelectorAll('.pg').forEach(e=>e.classList.toggle('on',e.id===p));
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.p===p));
+  document.querySelectorAll('.mnav button').forEach(a=>a.classList.toggle('on',a.dataset.p===p));
+  window.scrollTo({top:0,behavior:'instant' in document.documentElement.style?'instant':'auto'});
+}
+function openProduct(id){
+  const v=byId(id);
+  $('#mb').innerHTML=`<div class="two" style="align-items:start">
+  <div class="thumbwrap" style="text-align:center"><img src="${IMG(v.id)}" alt="${v.n}" style="width:min(240px,70%)"></div>
+  <div><span class="tag">${v.cat}</span><h2>${v.n}</h2><p>${v.sub} Net wt. 150 g. <b style="color:var(--ink)">${priceStr(v.price)}</b></p>
+  <h3 style="margin-top:14px;font-size:1.1rem">Description</h3><p>${v.desc}</p>
+  <h3 style="margin-top:14px;font-size:1.1rem">Ingredients</h3><p>${v.ingr.join(', ')}</p>
+  <p style="margin:16px 0"><button class="btn dark" onclick="addToCart('${v.id}');m.classList.remove('on')">Add to Bag</button></p></div></div>`;
+  $('#m').classList.add('on');
+}
+function openCompare(){
+  $('#mb').innerHTML=`<p class="eyebrow">Design preview</p><h2>Compare All Variants</h2><p>Same trusted identity. Four distinctive looks — tap any jar to view its full product details.</p>
+  <div class="grid" style="margin-top:20px">${V.map(v=>`<div class="card" style="cursor:pointer" onclick="m.classList.remove('on');openProduct('${v.id}')"><div class="thumbwrap"><img class="thumb" src="${IMG(v.id)}" alt="${v.n}"></div><span class="tag">${v.cat}</span><h3>${v.n}</h3><small>${v.sub}</small><div class="row"><span class="wt">150 g</span><span class="price">${priceStr(v.price)}</span></div></div>`).join('')}</div>`;
+  $('#m').classList.add('on');
+}
+function render(cat,fromSel){
+  curCat=cat;
+  let list=V.filter(v=>cat==='All'||v.cat===cat).slice();
+  const s=$('#sortsel')?$('#sortsel').value:'featured';
+  if(s==='az')list.sort((a,b)=>a.n.localeCompare(b.n));
+  if(s==='lo')list.sort((a,b)=>a.price-b.price);
+  if(s==='hi')list.sort((a,b)=>b.price-a.price);
+  $('#all').innerHTML=list.map(card).join('');
+  document.querySelectorAll('#chips .chip').forEach(e=>e.classList.toggle('on',e.dataset.c===cat));
+  document.querySelectorAll('#all .rv').forEach((e,i)=>{e.style.transitionDelay=(i%4)*80+'ms';io.observe(e)});
+}
+function sendForm(e){
+  e.preventDefault();
+  $('#sentok').classList.add('show');
+  toast('Message sent (mockup)');
+  e.target.reset();
+}
+
+/* ---- init ---- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;
+  const el=e.target;io.unobserve(el);
+  if(el.dataset.n!==undefined){
+    const n=+el.dataset.n,t0=performance.now();
+    (function f(t){const p=Math.min((t-t0)/1400,1);el.textContent=Math.round(n*(1-Math.pow(1-p,3))).toLocaleString('en-IN')+(p===1?(el.dataset.s||''):'');if(p<1)requestAnimationFrame(f)})(t0);
+  }else{el.classList.add('in')}
+}),{threshold:.14});
+
+/* hero rotating jar */
+let heroIdx=0,heroTimer=null;
+function showHero(i){
+  heroIdx=i;
+  const v=V[i],img=$('#heroImg');
+  img.classList.add('fading');
+  setTimeout(()=>{img.src=IMG(v.id);img.alt=v.n+' jar';img.classList.remove('fading')},160);
+  document.querySelectorAll('#heroDots .dot').forEach((d,di)=>d.classList.toggle('on',di===i));
+  $('#heroCap').textContent=v.n+' · '+v.sub;
+}
+function heroNext(){showHero((heroIdx+1)%V.length)}
+$('#heroDots').innerHTML=V.map((v,i)=>`<button type="button" class="dot ${i===0?'on':''}" aria-label="${v.n}" onclick="showHero(${i});resetHeroTimer()"></button>`).join('');
+function resetHeroTimer(){clearInterval(heroTimer);if(!matchMedia('(prefers-reduced-motion: reduce)').matches)heroTimer=setInterval(heroNext,3400)}
+showHero(0);resetHeroTimer();
+const heroEl=$('.hero');
+heroEl.addEventListener('mouseenter',()=>clearInterval(heroTimer));
+heroEl.addEventListener('mouseleave',resetHeroTimer);
+
+$('#featured').innerHTML=V.map(card).join('');
+$('#bandImg1').src=IMG('daily');
+$('#diffImg').src=IMG('moringa');
+$('#cmpList').innerHTML=V.map(v=>`<button type="button" class="cmpitem" onclick="openProduct('${v.id}')"><img src="${IMG(v.id)}" alt="${v.n}"><span>${v.n}</span></button>`).join('');
+$('#aboutStory').innerHTML=V.map(v=>`<img src="${IMG(v.id)}" alt="${v.n}" style="width:70px;filter:drop-shadow(0 10px 14px rgba(30,43,32,.25))">`).join('');
+$('#diffVariants').innerHTML=V.map(v=>`<img src="${IMG(v.id)}" alt="${v.n}" style="width:76px;filter:drop-shadow(0 10px 14px rgba(30,43,32,.25))">`).join('');
+$('#groupArt').innerHTML=V.map(v=>`<img src="${IMG(v.id)}" alt="${v.n}" style="width:28%;max-width:120px;margin:0 -8px;filter:drop-shadow(0 18px 22px rgba(0,0,0,.4))">`).join('');
+$('#groupArt').style.display='flex';$('#groupArt').style.alignItems='flex-end';$('#groupArt').style.justifyContent='center';
+
+$('#chips').innerHTML=['All',...V.map(v=>v.cat)].map(c=>`<button type="button" class="chip" data-c="${c}" onclick="render('${c}')">${c}</button>`).join('');
+render('All');
+
+const faqHTML=FAQ.map(f=>`<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('');
+$('#faqFull').innerHTML=faqHTML;
+$('#faqMini').innerHTML=FAQ.slice(0,4).map(f=>`<details><summary>${f.q}</summary><p>${f.a}</p></details>`).join('');
+
+$('#mnavRow').innerHTML=`
+<button type="button" class="on" data-p="home" onclick="go('home')"><svg viewBox="0 0 24 24"><path d="M4 11l8-7 8 7"/><path d="M6 10v9h12v-9"/></svg>Home</button>
+<button type="button" data-p="products" onclick="go('products')"><svg viewBox="0 0 24 24"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M8 7V5a4 4 0 0 1 8 0v2"/></svg>Products</button>
+<button type="button" onclick="openCart()"><svg viewBox="0 0 24 24"><path d="M4 5h2l2 11h11l2-8H7.2"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>Cart</button>
+<button type="button" onclick="openAccount()"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1-4 4-6 7-6s6 2 7 6"/></svg>Account</button>`;
+
+const mt='100% NATURAL ✦ PLANT BASED ✦ NO PRESERVATIVES ✦ FOUR VARIANT CONCEPTS ✦ NATURE INSPIRED ✦ DAILY BOOST ✦ ';
+const mtHTML=mt.repeat(4);
+$('#mqA').textContent=mtHTML;
+$('#mqB').textContent=mtHTML;
+
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){$('#m').classList.remove('on');closeCart();closeSearch();closeAccount()}});
+document.addEventListener('click',e=>{
+  const r=$('#searchRow');
+  if(r.classList.contains('on') && !r.contains(e.target) && !e.target.closest('#searchBtn'))r.classList.remove('on');
+});
+
+const hd=$('header'),pr=document.createElement('div');pr.id='pr';document.body.append(pr);
+addEventListener('scroll',()=>{
+  hd.classList.toggle('sc',scrollY>20);
+  pr.style.width=scrollY/((document.documentElement.scrollHeight-innerHeight)||1)*100+'%';
+},{passive:true});
+
+const leafPath='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c6 2 9 6 9 11-5 1-9-1-11-5-1 3 0 6 2 8-5-1-8-5-8-10 2-2 5-4 8-4z"/></svg>';
+for(let i=0;i<10;i++){const s=document.createElement('span');s.className='leafp';s.style.cssText=`left:${i*10+2}%;width:${14+i%3*4}px;height:${14+i%3*4}px;animation-duration:${14+i%5*3}s;animation-delay:-${i*2.1}s`;s.innerHTML=leafPath;heroEl.append(s)}
+
+document.querySelectorAll('.sec h2,.sec p.eyebrow + h1,.philrow div,.phil3 div,.commit .grid3 div,.citem,.clist').forEach((e,i)=>{e.classList.add('rv');e.style.transitionDelay=(i%4)*90+'ms'});
+
+document.querySelectorAll('.rv,[data-n]').forEach(e=>io.observe(e));
+</script>
+
+</body>
+</html>
