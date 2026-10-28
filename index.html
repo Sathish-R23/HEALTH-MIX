@@ -68,11 +68,28 @@ nav a:hover,nav a.on{color:var(--green);border-color:var(--gold)}
 .ibtn{background:none;border:0;cursor:pointer;color:var(--ink);display:grid;place-items:center;width:34px;height:34px;border-radius:50%}
 .ibtn:hover{background:var(--sage-bg)}
 .ibtn svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.7}
-.cart{background:var(--green);color:var(--cream-on-dark);border:0;border-radius:99px;padding:9px 18px;font:600 .82rem 'Inter';cursor:pointer;display:flex;align-items:center;gap:7px}
-.cart svg{width:15px;height:15px;stroke:var(--cream-on-dark);fill:none;stroke-width:2}
+.cart{position:relative;background:var(--green);color:var(--cream-on-dark);border:0;border-radius:99px;padding:9px 18px;font:600 .82rem 'Inter';cursor:pointer;display:flex;align-items:center;gap:7px;flex:none}
+.cart svg{width:15px;height:15px;stroke:var(--cream-on-dark);fill:none;stroke-width:2;flex:none}
 .cart.bump{animation:bump .4s}@keyframes bump{50%{transform:scale(1.22)}}
+.cart-badge{display:none}
 #pr{position:fixed;top:env(safe-area-inset-top,0px);left:0;height:3px;background:var(--gold);z-index:31;width:0}
-@media(max-width:860px){header .wrap{flex-wrap:wrap;height:auto!important;padding-top:10px;padding-bottom:10px;gap:8px 14px}nav{order:3;width:100%;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}nav::-webkit-scrollbar{display:none}nav a{margin:0 10px 0 0}}
+@media(max-width:860px){
+header .wrap{flex-wrap:wrap;height:auto!important;padding-top:10px;padding-bottom:10px;gap:10px 14px}
+nav{order:3;width:100%;overflow-x:auto;-ms-overflow-style:none;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav a{margin:0 10px 0 0}
+.hicons{gap:8px}
+.cart{width:40px;height:40px;padding:0;border-radius:50%;justify-content:center}
+.cart-txt{display:none}
+.cart-badge{display:flex;align-items:center;justify-content:center;position:absolute;top:-3px;right:-3px;min-width:16px;height:16px;padding:0 3px;border-radius:50%;background:var(--gold);color:var(--green-deep);font:700 .62rem/1 'Inter'}
+}
+@media(max-width:420px){
+.logo b{font-size:1.06rem}
+.logomark{height:40px;width:40px}
+.hicons{gap:6px}
+.ibtn{width:32px;height:32px}
+.cart{width:38px;height:38px}
+}
 
 .searchrow{display:none;border-top:1px solid var(--line);background:var(--paper)}
 .searchrow.on{display:block}
@@ -357,7 +374,7 @@ details p{margin:12px 0 0}
 <div class="hicons">
 <button class="ibtn" id="searchBtn" aria-label="Search" onclick="toggleSearch()"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></button>
 <button class="ibtn" id="acctBtn" aria-label="Account" onclick="openAccount()"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20c1.2-4.2 4.4-6.4 7.5-6.4s6.3 2.2 7.5 6.4"/></svg></button>
-<button class="cart" onclick="openCart()"><svg viewBox="0 0 24 24"><path d="M4 5h2l2 11h11l2-8H7.2"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>Cart (<span id="cc">0</span>)</button>
+<button class="cart" onclick="openCart()" aria-label="Cart"><svg viewBox="0 0 24 24"><path d="M4 5h2l2 11h11l2-8H7.2"/><circle cx="10" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span class="cart-txt">Cart (<span id="cc">0</span>)</span><span class="cart-badge" id="ccBadge">0</span></button>
 </div>
 </div>
 <div class="searchrow" id="searchRow"><div class="wrap">
@@ -665,23 +682,24 @@ function card(v){
 }
 function bumpCart(){const c=$('.cart');c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump')}
 function cartCount(){return cartItems.reduce((s,i)=>s+i.qty,0)}
+function setCartCount(n){$('#cc').textContent=n;$('#ccBadge').textContent=n}
 function cartTotal(){return cartItems.reduce((s,i)=>s+i.qty*byId(i.id).price,0)}
 function addToCart(id,qty){
   qty=qty||1;
   const row=cartItems.find(i=>i.id===id);
   if(row)row.qty+=qty;else cartItems.push({id,qty});
-  $('#cc').textContent=cartCount();bumpCart();
+  setCartCount(cartCount());bumpCart();
   toast(byId(id).n+' added to bag');
   if($('#cartWrap').classList.contains('on'))renderCartDrawer('cart');
 }
 function changeQty(id,d){
   const row=cartItems.find(i=>i.id===id);if(!row)return;
   row.qty=Math.max(1,Math.min(20,row.qty+d));
-  $('#cc').textContent=cartCount();renderCartDrawer('cart');
+  setCartCount(cartCount());renderCartDrawer('cart');
 }
 function removeFromCart(id){
   cartItems=cartItems.filter(i=>i.id!==id);
-  $('#cc').textContent=cartCount();renderCartDrawer('cart');
+  setCartCount(cartCount());renderCartDrawer('cart');
 }
 function openCart(){closeSearch();renderCartDrawer('cart');$('#cartWrap').classList.add('on')}
 function closeCart(){$('#cartWrap').classList.remove('on')}
@@ -732,7 +750,7 @@ function renderCartDrawer(mode){
 function placeOrder(e){
   e.preventDefault();
   cartItems=[];
-  $('#cc').textContent=0;
+  setCartCount(0);
   renderCartDrawer('done');
   toast('Order placed (mockup) — no real order was made');
 }
